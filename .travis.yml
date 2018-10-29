@@ -31,6 +31,8 @@ matrix:
   exclude:
     - os: osx
       compiler: gcc-8
+    - os: osx
+      compiler: clang-3.9
     - os: linux
       compiler: clang
 
@@ -44,9 +46,7 @@ before_install:
   - if [[ $TRAVIS_OS_NAME = osx ]]; then brew install glew sdl2 sdl2_image; fi
 
 # Build the project
-# clang-3.9 is just 'clang' on osx, and 'nproc' doesn't exist
 script:
-  - if [[ $TRAVIS_OS_NAME = osx && $CC = clang-3.9 ]]; then CC=clang; fi
   # What the config we are currently on is doing
   - uname -a; cmake --version; $CC --version
   - mkdir build
