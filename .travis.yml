@@ -12,6 +12,7 @@ language: c
 compiler:
   - gcc-8
   - clang-3.9
+  - clang
 
 # Configure the Ubuntu machine to have all dependencies
 addons:
@@ -30,6 +31,8 @@ matrix:
   exclude:
     - os: osx
       compiler: gcc-8
+    - os: linux
+      compiler: clang
 
 env:
   - CONFIG=Release

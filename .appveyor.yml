@@ -27,13 +27,16 @@ image:
 
 matrix:
   exclude:
+    # The Visual Studio 2017 image has an outdated version of MinGW
     - image: Visual Studio 2017
       COMPILER: MinGW
 
+# Add the MinGW compiler to PATH
 init:
   - cmd: git config --global core.autocrlf input
   - cmd: if [%COMPILER%]==[MinGW] SET PATH=%MINGW_BIN%;%PATH%
 
+# Install dependencies using my custom cmake targets
 before_build:
   - cmd: mkdir build
   - cmd: cd build
