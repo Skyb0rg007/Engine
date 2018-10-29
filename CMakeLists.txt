@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.1)
 project(GL_Engine
     VERSION 0.1.0
     DESCRIPTION "Testing OpenGL and SDL2"
-    HOMEPAGE_URL "https://github.com/Skyb0rg007/OpenGL-Testing"
     LANGUAGES C
 )
 
