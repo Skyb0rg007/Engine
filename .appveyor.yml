@@ -3,6 +3,7 @@ environment:
     - BUILD_TYPE: Debug
       COMPILER: MinGW
       C_COMPILER: C:\\mingw-w64\\x86_64-7.2.0-posix-seh-rt_v5-rev1\\x86_64-w64-mingw32-gcc.exe
+      MAKE_PROGRAM: C:\\mingw-w64\\x86_64-7.2.0-posix-seh-rt_v5-rev1\\mingw32-make.exe
       ARCH: x64
 
 image:
@@ -18,7 +19,7 @@ before_build:
   - cmd: mkdir build
   - cmd: cd build
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=ON
-  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON -DCMAKE_C_COMPILER=%C_COMPILER%
+  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON -DCMAKE_C_COMPILER=%C_COMPILER% -DCMAKE_MAKE_PROGRAM=%MAKE_PROGRAM%
   - cmd: cmake --build .
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=OFF
   - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=OFF
