@@ -1,10 +1,10 @@
+os: linux
 dist: trusty
 sudo: false
 
 language: c
 compiler:
   - gcc
-  - clang
 
 addons:
   apt:
@@ -12,15 +12,17 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - cmake
+      - gcc-7
       - libsdl2-dev
       - libglew-dev
       - libsdl2-image-dev
 
 script:
-  - gcc -v; cmake --version; clang -v
+  - gcc-7 -v; cmake --version; clang -v
+  - export CC=gcc-7
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=gcc
+  - cmake ../CMakeLists.txt -DCMAKE_BUILD_TYPE=Debug
   - NPROC=$(nproc)
   - cmake --build . -- --jobs $NPROC
   - ctest . --parallel $NPROC
