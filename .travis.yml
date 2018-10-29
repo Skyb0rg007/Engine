@@ -1,5 +1,5 @@
 dist: trusty
-sudo: require
+sudo: false
 
 language: c
 compiler:
@@ -11,17 +11,12 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-6
-      - clang-3.9
-      - cmake
       - libsdl2-dev
       - libglew-dev
       - libsdl2-image-dev
 
 script:
-  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/clang-3.9 /usr/local/bin/clang
-  - gcc -v && cmake --version && clang -v
+  - gcc-7 -v && cmake --version && clang-3.9 -v
   - mkdir build
   - cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Debug
