@@ -7,6 +7,9 @@ platform:
 configuration:
   - Debug
 
+init:
+  - git config --global core.autocrlf input
+
 before_build:
   - cmd: mkdir build
   - cmd: cd build
