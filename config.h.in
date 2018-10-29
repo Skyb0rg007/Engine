@@ -1,0 +1,10 @@
+#cmakedefine RESOURCE_DIR "@RESOURCE_DIR@"
+#cmakedefine DISABLE_ATTRIBUTES
+#cmakedefine MSVC
+
+#ifdef MSVC
+    #define _CRT_SECURE_NO_WARNINGS
+	#ifndef DISABLE_ATTRIBUTES
+		#define DISABLE_ATTRIBUTES
+	#endif
+#endif
