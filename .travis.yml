@@ -1,38 +1,77 @@
-os: 
-  - linux
-  - osx
 dist: trusty
 sudo: false
 
-language: c
-compiler:
-  - gcc-8
-  - clang-3.9
+language: minimal
 
+# Configure Ubuntu dependencies
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
       - cmake
-      - gcc-8
-      - clang-3.9
       - libsdl2-dev
       - libglew-dev
       - libsdl2-image-dev
 
+# All the different build configurations
 matrix:
-  exclude:
-    - os: osx
-      compiler: gcc-8
+  include:
+    - os: linux
+      env: CONFIG=Release CC=gcc-8
+      addons:
+        apt:
+          packages:
+            - gcc-8
 
+    - os: linux
+      env: CONFIG=Debug CC=gcc-8
+      addons:
+        apt:
+          packages:
+            - gcc-8
+
+    - os: linux
+      env: CONFIG=Release CC=clang-3.9
+      addons:
+        apt:
+          packages:
+            - clang-3.9
+
+    - os: linux
+      env: CONFIG=Debug CC=clang-3.9
+      addons:
+        apt:
+          packages:
+            - clang-3.9
+
+    - os: osx
+      env: CONFIG=Debug CC=clang BREW_EXTRA_PACKAGES=""
+
+    - os: osx
+      env: CONFIG=Release CC=clang BREW_EXTRA_PACKAGES=""
+
+    - os: osx
+      env: CONFIG=Debug CC=gcc-4.9 BREW_EXTRA_PACKAGES=""
+
+    - os: osx
+      env: CONFIG=Release CC=gcc-4.9 BREW_EXTRA_PACKAGES=""
+
+    - os: osx
+      env: CONFIG=Debug CC=gcc-7 BREW_EXTRA_PACKAGES="gcc7"
+
+    - os: osx
+      env: CONFIG=Release CC=gcc-7 BREW_EXTRA_PACKAGES="gcc7"
+
+# Configure OSX dependencies
 before_install:
   - if [[ $TRAVIS_OS_NAME = osx ]]; then brew update; fi
-  - if [[ $TRAVIS_OS_NAME = osx ]]; then brew install glew sdl2 sdl2_image; fi
+  - if [[ $TRAVIS_OS_NAME = osx ]]; then brew install glew sdl2 sdl2_image $BREW_EXTRA_PACKAGES; fi
 
+# Build the project
 script:
-  - if [[ $TRAVIS_OS_NAME = osx && $CC = clang-3.9 ]]; then CC=clang; fi
-  - cmake --version; $CC -v
+  # What the config we are currently on is doing
+  - uname -a; cmake --version; $CC --version
   - mkdir build
   - cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Debug

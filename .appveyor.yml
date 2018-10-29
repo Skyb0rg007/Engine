@@ -32,7 +32,7 @@ matrix:
 
 init:
   - cmd: git config --global core.autocrlf input
-  - cmd: if [%COMPILER%]==[MinGW] SET PATH=%MINGW_BIN%;%PATH:C:\Program Files\Git\usr\bin;=%
+  - cmd: if [%COMPILER%]==[MinGW] SET PATH=%MINGW_BIN%;%PATH%
 
 before_build:
   - cmd: mkdir build
