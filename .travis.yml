@@ -22,7 +22,7 @@ script:
   - export CC=gcc-7
   - mkdir build
   - cd build
-  - cmake ../CMakeLists.txt -DCMAKE_BUILD_TYPE=Debug
+  - cmake .. -DCMAKE_BUILD_TYPE=Debug
   - NPROC=$(nproc)
   - cmake --build . -- --jobs $NPROC
   - ctest . --parallel $NPROC
