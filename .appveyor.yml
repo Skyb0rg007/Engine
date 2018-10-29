@@ -16,10 +16,10 @@ before_build:
   - cmd: mkdir build
   - cmd: cd build
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -Ax64 -DINSTALL_WIN_DEPS=ON
-  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DCMAKE_SH=CMAKE_SH-NOTFOUND -DINSTALL_WIN_DEPS=ON
+  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON
   - cmd: cmake --build .
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -Ax64 -DINSTALL_WIN_DEPS=OFF
-  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DCMAKE_SH=CMAKE_SH-NOTFOUND -DINSTALL_WIN_DEPS=OFF
+  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=OFF
 
 build_script:
   - cmd: cmake --build . --config Debug
