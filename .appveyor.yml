@@ -1,9 +1,9 @@
-# Matrix: 
-#  os
-#  env
-#  platform (arch)
-#  conf
-#
+# Testing configurations:
+#   - MSVC: 2017 and 2015
+#   - MinGW: 6.3.0 and 7.3.0
+# Both are compiling Debug and Release builds
+# Architecture is x64 only (for now)
+
 environment:
   matrix:
     - COMPILER: MinGW
