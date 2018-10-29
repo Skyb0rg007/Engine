@@ -16,7 +16,8 @@ addons:
       - libsdl2-image-dev
 
 script:
-  - gcc-7 -v && cmake --version && clang-3.9 -v
+  - gcc -v; cmake --version; clang-3.9 -v
+  - export CC=gcc
   - mkdir build
   - cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Debug
