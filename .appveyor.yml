@@ -17,6 +17,7 @@ init:
 before_build:
   - cmd: mkdir build
   - cmd: cd build
+  - cmd: dir C:\\mingw-w64\\x86_64-7.2.0-posix-seh-rt_v5-rev1\\
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -Ax64 -DINSTALL_WIN_DEPS=ON
   - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DCMAKE_SH=CMAKE_SH-NOTFOUND -DINSTALL_WIN_DEPS=ON -DCMAKE_C_COMPILER=C:\\mingw-w64\\x86_64-7.2.0-posix-seh-rt_v5-rev1\\gcc 
   - cmd: cmake --build .
