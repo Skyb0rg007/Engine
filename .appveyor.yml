@@ -48,3 +48,6 @@ build_script:
 
 test_script:
   - cmd: ctest build
+
+skip_commits:
+  message: /^\[skip appveyor\]/
