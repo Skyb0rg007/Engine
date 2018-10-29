@@ -2,6 +2,7 @@ environment:
   matrix:
     - BUILD_TYPE: Debug
       COMPILER: MinGW
+      C_COMPILER: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\x86_64-w64-mingw32-gcc.exe
       ARCH: x64
 
 image:
@@ -11,14 +12,15 @@ image:
 init:
   - cmd: git config --global core.autocrlf input
   - cmd: if [%COMPILER%]==[MinGW] SET PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+  - cmd: echo PATH=%PATH%
 
 before_build:
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: if [%COMPILER%]==[MSVC] cmake .. -Ax64 -DINSTALL_WIN_DEPS=ON
-  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON
+  - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=ON
+  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON -DCMAKE_C_COMPILER=%C_COMPILER%
   - cmd: cmake --build .
-  - cmd: if [%COMPILER%]==[MSVC] cmake .. -Ax64 -DINSTALL_WIN_DEPS=OFF
+  - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=OFF
   - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=OFF
 
 build_script:
