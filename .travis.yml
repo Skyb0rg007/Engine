@@ -24,7 +24,7 @@ addons:
 matrix:
   exclude:
     - os: osx
-    - compiler: gcc-8
+      compiler: gcc-8
 
 before_install:
   - if [[ $TRAVIS_OS_NAME = osx ]]; then brew update; fi
