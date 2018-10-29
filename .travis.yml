@@ -15,7 +15,7 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - cmake
-      - gcc-7
+      - gcc-8
       - clang-3.9
       - libsdl2-dev
       - libglew-dev
@@ -32,7 +32,7 @@ before_install:
 
 script:
   - if [[ $TRAVIS_OS_NAME = osx && $CC = clang-3.9 ]]; then CC=clang; fi
-  - cmake --version; clang -v
+  - cmake --version; $CC -v
   - mkdir build
   - cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Debug
