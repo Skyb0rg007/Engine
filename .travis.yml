@@ -16,11 +16,10 @@ addons:
       - libsdl2-image-dev
 
 script:
-  - gcc -v; cmake --version; clang-3.9 -v
-  - export CC=gcc
+  - gcc -v; cmake --version; clang -v
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=Debug
+  - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=gcc
   - NPROC=$(nproc)
   - cmake --build . -- --jobs $NPROC
   - ctest . --parallel $NPROC
