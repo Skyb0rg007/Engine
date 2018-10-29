@@ -1,18 +1,34 @@
+# Matrix: 
+#  os
+#  env
+#  platform (arch)
+#  conf
+#
 environment:
   matrix:
-    - BUILD_TYPE: Debug
-      COMPILER: MinGW
+    - COMPILER: MinGW
       ARCH: x64
       MINGW_BIN: 'C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin'
-    - BUILD_TYPE: Debug
-      COMPILER: MinGW
+
+    - COMPILER: MinGW
       ARCH: x64
       MINGW_BIN: 'C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin'
 
+    - COMPILER: MSVC
+      ARCH: x64
+
+configuration:
+  - Debug
+  - Release
 
 image:
   - Visual Studio 2015
-  # - Visual Studio 2017
+  - Visual Studio 2017
+
+matrix:
+  exclude:
+    - image: Visual Studio 2017
+      COMPILER: MinGW
 
 init:
   - cmd: git config --global core.autocrlf input
@@ -22,13 +38,13 @@ before_build:
   - cmd: mkdir build
   - cmd: cd build
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=ON
-  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON -DCMAKE_IGNORE_PATH="C:/Program Files/Git/usr/bin;C:/MinGW/bin"
+  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON -DCMAKE_IGNORE_PATH="C:/Program Files/Git/usr/bin;C:/MinGW/bin" -DCMAKE_BUILD_TYPE=%configuration%
   - cmd: cmake --build .
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=OFF
   - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=OFF
 
 build_script:
-  - cmd: cmake --build . --config Debug
+  - cmd: cmake --build . --config %configuration%
 
 test_script:
   - cmd: ctest build
