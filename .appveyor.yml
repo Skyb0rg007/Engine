@@ -2,12 +2,13 @@ environment:
   matrix:
     - BUILD_TYPE: Debug
       COMPILER: MinGW
-      MINGW_BIN: 'C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin'
       ARCH: x64
+      MINGW_BIN: 'C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin'
+
 
 image:
-  - Visual Studio 2015
-  # - Visual Studio 2017
+  # - Visual Studio 2015
+  - Visual Studio 2017
 
 init:
   - cmd: git config --global core.autocrlf input
