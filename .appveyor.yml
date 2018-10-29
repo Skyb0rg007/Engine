@@ -10,7 +10,8 @@ image:
 
 init:
   - cmd: git config --global core.autocrlf input
-  - cmd: if [%COMPILER%]==[MinGW] SET 'PATH=%PATH:C:\Program Files\Git\usr\bin;=%'
+  - cmd: if [%COMPILER%]==[MinGW] SET PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+  - cmd: echo %PATH% | tr ; \n
 
 before_build:
   - cmd: mkdir build
