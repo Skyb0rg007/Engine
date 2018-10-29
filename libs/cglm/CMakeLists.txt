@@ -1,7 +1,6 @@
 project(cglm
     VERSION 0.4.6
     DESCRIPTION "Optimized matrix library - glm for C"
-    HOMEPAGE_URL "https://github.com/recp/cglm"
     LANGUAGES C
 )
 

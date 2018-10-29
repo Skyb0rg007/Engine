@@ -1,6 +1,5 @@
 project(klib
     DESCRIPTION "Klib is a standalone and lightweight C library"
-    HOMEPAGE_URL "https://github.com/attractivechaos/klib"
     LANGUAGES C
 )
 
