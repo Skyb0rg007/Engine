@@ -2,7 +2,7 @@ environment:
   matrix:
     - BUILD_TYPE: Debug
       COMPILER: MinGW
-      C_COMPILER: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\x86_64-w64-mingw32-gcc.exe
+      C_COMPILER: C:\\mingw-w64\\x86_64-7.2.0-posix-seh-rt_v5-rev1\\x86_64-w64-mingw32-gcc.exe
       ARCH: x64
 
 image:
