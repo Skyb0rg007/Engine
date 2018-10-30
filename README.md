@@ -58,7 +58,9 @@ See Linux running
 ### Minimum dependencies
 
 - cmake 3.1+
-- Mingw-64 / MSVC 2017
+- Mingw-64 / MSVC 2017 / MSVC 2015
+
+(I recommend MSVC 2017 if you can choose, it's easier to set up)
 
 If you have a 64-bit machine, I've written a dependency-installer for you:
 
@@ -90,6 +92,6 @@ and set up the CMAKE variables to find these libraries
 ### Running
 
 I wrote a quick batch script if you used my dependency installer
-Make sure you are in the directory the batch script is in
+It justs runs ```.\Runner\runner.exe``` with the ```.dll```s on %PATH%
 
     .\\run.bat
