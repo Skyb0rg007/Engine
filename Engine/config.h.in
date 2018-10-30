@@ -28,7 +28,7 @@
 #ifdef WIN32
     #ifdef BUILDING_ENGINE_DLL
         #define ATTR_EXTERNAL __declspec(dllexport)
-    #elif INCLUDING_ENGINE_DLL
+    #elif defined(INCLUDING_ENGINE_DLL)
         #define ATTR_EXTERNAL __declspec(dllimport)
     #else
         #define ATTR_EXTERNAL extern
@@ -47,7 +47,7 @@
     #define ATTR_MALLOC
     #define ATTR_RETURNS_NONNULL
     #define ATTR_NONNULL(...)
-#elif MSVC
+#elif defined(MSVC)
     #define ATTR_UNUSED __pragma(warning(suppress:4100 4101))
     #define ATTR_PURE   __declspec(noalias)
     #define ATTR_CONST  ATTR_PURE
