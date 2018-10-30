@@ -54,4 +54,4 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=$CONFIG -DENABLE_TESTS=ON
   - if [[ $TRAVIS_OS_NAME = osx ]]; then NPROC=$(sysctl -n hw.physicalcpu); else NPROC=$(nproc); fi
   - cmake --build . -- --jobs $NPROC
-  - ctest . --parallel $NPROC
+  - ctest . --parallel $NPROC --build-config Debug --verbose
