@@ -1,4 +1,6 @@
 #include "common.h"
+#include <stdio.h>
+
 #include "utils.h"
 
 /* load_file - convert a filepath into a content string
