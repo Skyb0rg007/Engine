@@ -37,7 +37,7 @@ matrix:
       compiler: clang
 
 env:
-  - CONFIG=Release
+  # - CONFIG=Release
   - CONFIG=Debug
 
 # Configure OSX to have all dependencies
