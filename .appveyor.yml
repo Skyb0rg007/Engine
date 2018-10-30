@@ -46,9 +46,11 @@ before_build:
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=OFF
   - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=OFF
 
+# Include the config option since Visual Studio stores multiple configs
 build_script:
   - cmd: cmake --build . --config %configuration%
 
+# Add DLLs to PATH so they're available for running tests
 after_build:
   - cmd: SET PATH=%PATH%;../deps/install-MSVC/;../deps/install-mingw
 
