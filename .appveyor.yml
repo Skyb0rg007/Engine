@@ -6,6 +6,9 @@
 
 environment:
   matrix:
+    - COMPILER: MSVC
+      ARCH: x64
+
     - COMPILER: MinGW
       ARCH: x64
       MINGW_BIN: 'C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin'
@@ -13,9 +16,6 @@ environment:
     - COMPILER: MinGW
       ARCH: x64
       MINGW_BIN: 'C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin'
-
-    - COMPILER: MSVC
-      ARCH: x64
 
 configuration:
   - Debug
