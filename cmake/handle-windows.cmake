@@ -27,10 +27,10 @@ elseif(WIN32)
 	if (MINGW)
 		list(APPEND CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/deps/install-mingw)
 		string(CONCAT RUN_BAT_SRC
-			 "@echo off\r\n"
+			"@echo off\r\n"
 			"PATH=${CMAKE_SOURCE_DIR}\\deps\\install-mingw\\bin;%PATH%\r\n"
 			"cmake --build . -- -j\r\n"
-			".\\src\\main.exe")
+			".\\src\\Runner\\runner.exe")
 		file(GENERATE 
 			OUTPUT ${CMAKE_BINARY_DIR}/run.bat
 			CONTENT "${RUN_BAT_SRC}")
@@ -42,7 +42,7 @@ elseif(WIN32)
 			"SET config=Debug\r\n"
 			"IF \"%1\"==\"Release\" (SET config=Release)\r\n"
 			"cmake --build . --config %config%\r\n"
-			".\\src\\%config%\\main.exe")
+			".\\src\\%config%\\Runner\\runner.exe")
 		file(GENERATE
 			OUTPUT ${CMAKE_BINARY_DIR}/run.bat
 			CONTENT "${RUN_BAT_SRC}")

@@ -52,7 +52,7 @@ build_script:
 
 # Add DLLs to PATH so they're available for running tests
 before_test:
-  - cmd: SET PATH=%PATH%;%cd%../deps/install-MSVC/;%cd%../deps/install-mingw
+  - cmd: SET PATH=%PATH%;%cd%/../deps/install-MSVC/bin;%cd%/../deps/install-mingw/bin
 
 test_script:
   - cmd: ctest . --build-config Debug --verbose

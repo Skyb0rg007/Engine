@@ -1,4 +1,6 @@
 .*.swp
 *~
 build/
+build-*/
+deps/
 Engine/include/config.h

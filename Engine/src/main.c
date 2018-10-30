@@ -42,9 +42,9 @@ static void check_SDL(void)
     SDL_version compiled, linked;
     SDL_VERSION(&compiled);
     SDL_GetVersion(&linked);
-    printf("Compiled against SDL version %d.%d.%d\n",
+    LOG_INFO("Compiled against SDL version %d.%d.%d\n",
             compiled.major, compiled.minor, compiled.patch);
-    printf("Linked against SDL version %d.%d.%d\n",
+    LOG_INFO("Linked against SDL version %d.%d.%d\n",
             linked.major, linked.minor, linked.patch);
 }
 
@@ -53,9 +53,9 @@ static void check_SDL_image(void)
     SDL_version compiled;
     SDL_IMAGE_VERSION(&compiled);
     const SDL_version *linked = IMG_Linked_Version();
-    printf("Compiled against SDL_image version %d.%d.%d\n",
+    LOG_INFO("Compiled against SDL_image version %d.%d.%d\n",
             compiled.major, compiled.minor, compiled.patch);
-    printf("Linked against SDL_image version %d.%d.%d\n",
+    LOG_INFO("Linked against SDL_image version %d.%d.%d\n",
             linked->major, linked->minor, linked->patch);
 }
 
@@ -78,11 +78,11 @@ static void check_OpenGL(void)
     GLenum err = glewInit();
     assert(err == GLEW_OK);
 
-    printf("Using GLEW version %s\n", glewGetString(GLEW_VERSION));
+    LOG_INFO("Using GLEW version %s\n", glewGetString(GLEW_VERSION));
 
     const GLubyte *version;
     GLCHECK(version = glGetString(GL_VERSION));
-    printf("Using OpenGL version %s\n", (const char *)version);
+    LOG_INFO("Using OpenGL version %s\n", (const char *)version);
 
     SDL_GL_DeleteContext(ctx);
     SDL_DestroyWindow(window);
