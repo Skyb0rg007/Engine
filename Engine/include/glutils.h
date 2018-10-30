@@ -20,6 +20,6 @@
 } while (0)
 
 ATTR_INTERNAL
-const char *glEnumName(GLenum e) ATTR_CONST ATTR_RETURNS_NONNULL;
+const char *glEnumName(GLenum e) ATTR_RETURNS_NONNULL;
 
 #endif

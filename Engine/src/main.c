@@ -1,6 +1,6 @@
-#include "config.h"
-#include "common.h"
-#include "glutils.h"
+#include "../include/config.h"
+#include "../include/common.h"
+#include "../include/glutils.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <GL/glew.h>
