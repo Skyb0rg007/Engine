@@ -24,10 +24,12 @@
 
 /* Dynamic library attributes */
 #ifdef WIN32
-    #ifdef BUILDING_ENGINE_LIB
+    #ifdef BUILDING_ENGINE_DLL
         #define ATTR_EXTERNAL __declspec(dllexport)
-    #else
+    #elif INCLUDING_ENGING_DLL
         #define ATTR_EXTERNAL __declspec(dllimport)
+    #else
+        #define ATTR_EXTERNAL extern
     #endif
     #define ATTR_INTERNAL
 #else
