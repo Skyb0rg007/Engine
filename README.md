@@ -94,4 +94,4 @@ and set up the CMAKE variables to find these libraries
 I wrote a quick batch script if you used my dependency installer
 It justs runs ```.\Runner\runner.exe``` with the ```.dll```s on %PATH%
 
-    .\\run.bat
+    .\run.bat
