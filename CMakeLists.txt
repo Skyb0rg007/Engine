@@ -14,8 +14,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 # All possible cmake options
 option(INSTALL_WIN_DEPS "Install SDL2, SDL2_image, and GLEW for Windows" OFF)
-option(DISABLE_ATTRIBUTES "Disables __attribute__ - default on for MSVC and off otherwise" OFF)
+option(DISABLE_ATTRIBUTES "Disables optimising attributes" OFF)
 option(USE_ASAN "Compiles with AddressSanitizer for Debug builds - Linux only" OFF)
+option(ENABLE_TESTS "Enable the tests for this project" OFF)
 
 include(cmake/handle-windows.cmake)
 if (INSTALL_WIN_DEPS)
@@ -37,6 +38,11 @@ if (USE_ASAN)
         " -fno-omit-frame-pointer -fsanitize=address ")
 endif(USE_ASAN)
 
+# Enable testing if we want
+if (ENABLE_TESTS)
+    enable_testing()
+endif(ENABLE_TESTS)
+
 # supplementary libraries
 add_subdirectory(libs/cglm) # cglm interface library
 add_subdirectory(libs/klib) # klib interface library
@@ -44,9 +50,7 @@ add_subdirectory(libs/klib) # klib interface library
 # Location for shaders and other resources
 set(RESOURCE_DIR "${CMAKE_SOURCE_DIR}/resources/")
 
-# the main executable
-add_subdirectory(src)
-
-# the testing suite
-# enable_testing()
-# add_subdirectory(tests)
+# the main library
+add_subdirectory(Engine)
+# the executable
+add_subdirectory(Runner)

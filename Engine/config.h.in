@@ -1,0 +1,62 @@
+/** 
+ * @file config.h.in
+ * 
+ * This header is meant to define compiler and os specific macros
+ *  and/or define macros that are needed before including specific headers
+ *  such as GLEW_STATIC
+ * Because of this requirement, config.h is included first in all files
+ */
+#ifndef CONFIG_H_INCLUDED
+#define CONFIG_H_INCLUDED
+
+#cmakedefine RESOURCE_DIR "@RESOURCE_DIR@"
+#cmakedefine DISABLE_ATTRIBUTES
+#cmakedefine MSVC
+#cmakedefine WIN32
+#cmakedefine USE_ASAN
+
+#cmakedefine GLEW_STATIC
+#cmakedefine GLEW_BUILD
+
+#ifdef MSVC
+    #define _CRT_SECURE_NO_WARNINGS
+#endif
+
+/* Dynamic library attributes */
+#ifdef WIN32
+    #ifdef BUILDING_ENGINE_LIB
+        #define ATTR_EXTERNAL __declspec(dllexport)
+    #else
+        #define ATTR_EXTERNAL __declspec(dllimport)
+    #endif
+    #define ATTR_INTERNAL
+#else
+    #define ATTR_EXTERNAL extern
+    #define ATTR_INTERNAL __attribute__((__visibility__("hidden"))) extern
+#endif
+
+/* Optimising attributes */
+#ifdef DISABLE_ATTRIBUTES
+    #define ATTR_UNUSED
+    #define ATTR_PURE  
+    #define ATTR_CONST 
+    #define ATTR_MALLOC
+    #define ATTR_RETURNS_NONNULL
+    #define ATTR_NONNULL(...)
+#elif MSVC
+    #define ATTR_UNUSED __pragma(warning(suppress:4100 4101))
+    #define ATTR_PURE   __declspec(noalias)
+    #define ATTR_CONST  ATTR_PURE
+    #define ATTR_MALLOC __declspec(restrict)
+    #define ATTR_RETURNS_NONNULL
+    #define ATTR_NONNULL(...)
+#else
+    #define ATTR_UNUSED __attribute__((__unused__))
+    #define ATTR_PURE   __attribute__((__pure__))
+    #define ATTR_CONST  __attribute__((__const__))
+    #define ATTR_MALLOC __attribute__((__malloc__))
+    #define ATTR_RETURNS_NONNULL __attribute__((__returns_nonnull__))
+    #define ATTR_NONNULL(...) __attribute__((nonnull(__VA_ARGS__)))
+#endif
+
+#endif /* CONFIG_H_INCLUDED */
