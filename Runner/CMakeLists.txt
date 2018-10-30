@@ -4,7 +4,6 @@ add_executable(runner WIN32
 target_link_libraries(runner
     PUBLIC
         engine
-        SDL2::SDL2main
 )
 
 add_subdirectory(tests)

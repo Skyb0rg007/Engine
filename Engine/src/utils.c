@@ -15,19 +15,22 @@
 ATTR_INTERNAL
 char *load_file(const char *path)
 {
+    int ret;
+
     FILE *file = fopen(path, "rb");
     ASSERT(file != NULL);
 
-    int ret = fseek(file, 0, SEEK_END);
+    ret = fseek(file, 0, SEEK_END);
     ASSERT(ret != -1);
-    int file_length = ftell(file);
+    long file_length = ftell(file);
     ASSERT(file_length != -1);
     rewind(file);
     char *data = calloc(file_length + 1, sizeof (char));
     ASSERT(data != NULL);
-    ret = fread(data, sizeof (char), file_length, file);
-    ASSERT(ret == file_length);
+    size_t read_length = fread(data, sizeof (char), file_length, file);
+    ASSERT(read_length == file_length);
     ret = fclose(file);
     ASSERT(ret != EOF);
+
     return data;
 }
