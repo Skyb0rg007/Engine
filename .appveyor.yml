@@ -40,7 +40,7 @@ init:
 before_build:
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=ON
+  - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=ON -DDISABLE_ATTRIBUTES=ON
   - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON -DCMAKE_IGNORE_PATH="C:/Program Files/Git/usr/bin;C:/MinGW/bin" -DCMAKE_BUILD_TYPE=%configuration%
   - cmd: cmake --build .
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=OFF
