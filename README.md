@@ -30,6 +30,10 @@ Toying around with SDL2, OpenGL, and other fun C stuff
     cmake .. -DCMAKE_BUILD_TYPE=Release
     cmake --build .
 
+### Running
+
+    ./Runner/runner
+
 ## MacOS
 
 ### Dependencies
@@ -37,9 +41,17 @@ Toying around with SDL2, OpenGL, and other fun C stuff
 I recommend installing dependencies using `brew`
 
 - cmake 3.1+
-- SDL2
-- SDL2\_image
-- GLEW
+- sdl2
+- sdl2\_image
+- glew
+
+### Building
+
+See Linux building
+
+### Running
+
+See Linux running
 
 ## Windows
 
@@ -74,3 +86,10 @@ and set up the CMAKE variables to find these libraries
 
     # You only need to include the '--config Release' if on MSVC
     cmake --build . --config Release
+
+### Running
+
+I wrote a quick batch script if you used my dependency installer
+Make sure you are in the directory the batch script is in
+
+    .\\run.bat
