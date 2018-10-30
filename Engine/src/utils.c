@@ -28,7 +28,7 @@ char *load_file(const char *path)
     char *data = calloc(file_length + 1, sizeof (char));
     ASSERT(data != NULL);
     size_t read_length = fread(data, sizeof (char), file_length, file);
-    ASSERT(read_length == file_length);
+    ASSERT((long)read_length == file_length);
     ret = fclose(file);
     ASSERT(ret != EOF);
 

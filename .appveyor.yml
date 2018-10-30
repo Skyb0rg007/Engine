@@ -43,8 +43,8 @@ before_build:
   - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=ON -DDISABLE_ATTRIBUTES=ON
   - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=ON -DCMAKE_IGNORE_PATH="C:/Program Files/Git/usr/bin;C:/MinGW/bin" -DCMAKE_BUILD_TYPE=%configuration%
   - cmd: cmake --build .
-  - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=OFF
-  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=OFF
+  - cmd: if [%COMPILER%]==[MSVC] cmake .. -A%ARCH% -DINSTALL_WIN_DEPS=OFF -DENABLE_TESTS=ON
+  - cmd: if [%COMPILER%]==[MinGW] cmake .. -G "MinGW Makefiles" -DINSTALL_WIN_DEPS=OFF -DENABLE_TESTS=ON
 
 # Include the config option since Visual Studio stores multiple configs
 build_script:
