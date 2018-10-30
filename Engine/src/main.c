@@ -6,7 +6,6 @@
 #include <GL/glew.h>
 #include <stdio.h>
 #include <assert.h>
-
 #include "kvec.h"
 #include "cglm/cglm.h"
 
@@ -36,7 +35,6 @@ int main_func(int argc, char *argv[])
 
     return 0;
 }
-
 
 
 static void check_SDL(void)

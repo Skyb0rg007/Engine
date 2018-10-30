@@ -12,7 +12,9 @@
 #cmakedefine RESOURCE_DIR "@RESOURCE_DIR@"
 #cmakedefine DISABLE_ATTRIBUTES
 #cmakedefine MSVC
-#cmakedefine WIN32
+#ifndef WIN32
+    #cmakedefine WIN32
+#endif
 #cmakedefine USE_ASAN
 
 #cmakedefine GLEW_STATIC
@@ -26,7 +28,7 @@
 #ifdef WIN32
     #ifdef BUILDING_ENGINE_DLL
         #define ATTR_EXTERNAL __declspec(dllexport)
-    #elif INCLUDING_ENGING_DLL
+    #elif INCLUDING_ENGINE_DLL
         #define ATTR_EXTERNAL __declspec(dllimport)
     #else
         #define ATTR_EXTERNAL extern

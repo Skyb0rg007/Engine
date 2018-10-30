@@ -2,7 +2,6 @@
 #include "glutils.h"
 #include <GL/glew.h>
 
-
 ATTR_INTERNAL 
 const char *glEnumName(GLenum e)
 {

@@ -47,10 +47,10 @@ target_compile_options(engine
             -Wjump-misses-init
         >
 )
-target_compile_definitions(engine
-    PRIVATE
-        BUILDING_ENGINE_LIB
-)
+# target_compile_definitions(engine
+    # PRIVATE
+        # BUILDING_ENGINE_LIB
+# )
 
 # Testing
 add_subdirectory(tests)

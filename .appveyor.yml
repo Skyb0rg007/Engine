@@ -49,8 +49,11 @@ before_build:
 build_script:
   - cmd: cmake --build . --config %configuration%
 
+after_build:
+  - cmd: SET PATH=%PATH%;../deps/install-MSVC/;../deps/install-mingw
+
 test_script:
-  - cmd: ctest build
+  - cmd: ctest .
 
 skip_commits:
   message: /^\[skip appveyor\]/
