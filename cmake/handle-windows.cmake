@@ -26,23 +26,27 @@ elseif(WIN32)
 	
 	if (MINGW)
 		list(APPEND CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/deps/install-mingw)
+		string(REPLACE "/" "\\" WINDOWS_SOURCE_DIR "${CMAKE_SOURCE_DIR}")
+		string(REPLACE "/" "\\" WINDOWS_BINARY_DIR "${CMAKE_BINARY_DIR}")
 		string(CONCAT RUN_BAT_SRC
 			"@echo off\r\n"
-			"PATH=${CMAKE_SOURCE_DIR}\\deps\\install-mingw\\bin;%PATH%\r\n"
+			"SET PATH=${WINDOWS_SOURCE_DIR}\\deps\\install-mingw\\bin;%PATH%\r\n"
 			"cmake --build . -- -j\r\n"
-			".\\src\\Runner\\runner.exe")
+			"${WINDOWS_BINARY_DIR}\\Runner\\runner.exe")
 		file(GENERATE 
 			OUTPUT ${CMAKE_BINARY_DIR}/run.bat
 			CONTENT "${RUN_BAT_SRC}")
 	elseif(MSVC)
 		list(APPEND CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/deps/install-MSVC)
+		string(REPLACE "/" "\\" WINDOWS_SOURCE_DIR "${CMAKE_SOURCE_DIR}")
+		string(REPLACE "/" "\\" WINDOWS_BINARY_DIR "${CMAKE_BINARY_DIR}")
 		string(CONCAT RUN_BAT_SRC
 			"@echo off\r\n"
-			"PATH=${CMAKE_SOURCE_DIR}\\deps\\install-MSVC\\bin;%PATH%\r\n"
+			"SET PATH=${WINDOWS_SOURCE_DIR}\\deps\\install-MSVC\\bin;%PATH%\r\n"
 			"SET config=Debug\r\n"
 			"IF \"%1\"==\"Release\" (SET config=Release)\r\n"
 			"cmake --build . --config %config%\r\n"
-			".\\src\\%config%\\Runner\\runner.exe")
+			"${WINDOWS_BINARY_DIR}\\Runner\\%config%\\runner.exe")
 		file(GENERATE
 			OUTPUT ${CMAKE_BINARY_DIR}/run.bat
 			CONTENT "${RUN_BAT_SRC}")
