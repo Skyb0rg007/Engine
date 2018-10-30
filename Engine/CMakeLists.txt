@@ -13,7 +13,7 @@ target_link_libraries(engine
     PUBLIC
         OpenGL::GL
         GLEW::GLEW
-        SDL2::SDL2main
+        SDL2::SDL2
         SDL2::SDL2_image
     PRIVATE
         cglm
