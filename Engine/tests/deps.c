@@ -50,7 +50,10 @@ static void check_SDL_image(void)
 static void check_OpenGL(void)
 {
     int ret = SDL_Init(SDL_INIT_VIDEO);
-    assert(ret == 0);
+    if (ret != 0) {
+        fprintf(stderr, "Error initializing SDL: %s\n", SDL_GetError());
+        return;
+    }
 
     SDL_Window *window = SDL_CreateWindow("unused", 0, 0, 100, 100,
             SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
@@ -64,7 +67,10 @@ static void check_OpenGL(void)
 
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
-    assert(err == GLEW_OK);
+    if (err != GLEW_OK) {
+        fprintf(stderr, "Error initializing GLEW\n");
+        return;
+    }
 
     printf("Using GLEW version %s\n", glewGetString(GLEW_VERSION));
 

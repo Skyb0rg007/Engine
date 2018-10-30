@@ -55,7 +55,7 @@ after_build:
   - cmd: SET PATH=%PATH%;../deps/install-MSVC/;../deps/install-mingw
 
 test_script:
-  - cmd: ctest . --verbose
+  - cmd: ctest . --build-config Debug --verbose
 
 skip_commits:
   message: /^\[skip appveyor\]/
