@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9.6)
+cmake_minimum_required(VERSION 3.9)
 project(GL_Engine
     VERSION 0.1.0
     DESCRIPTION "Testing OpenGL and SDL2"
