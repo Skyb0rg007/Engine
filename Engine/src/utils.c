@@ -4,20 +4,12 @@
 
 #include "utils.h"
 
-/* load_file - convert a filepath into a content string
- * @path: the filepath
- *
- * Contracts:
- *  - @path is non-null and a valid file path
- * Responsibilities:
- *  - Call free() on the returned string
- */
 ATTR_INTERNAL
 char *load_file(const char *path)
 {
     int ret;
 
-    FILE *file = fopen(path, "rb");
+    FILE *file = fopen(path, "rt");
     ASSERT(file != NULL);
 
     ret = fseek(file, 0, SEEK_END);

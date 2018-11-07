@@ -1,10 +1,10 @@
 /** 
  * @file config.h.in
+ * @brief This file defines compiler and OS-specific macros
  * 
- * This header is meant to define compiler and os specific macros
- *  and/or define macros that are needed before including specific headers
- *  such as GLEW_STATIC
- * Because of this requirement, config.h is included first in all files
+ * This file is included in all Engine files first through common.h.
+ * The compiler-specific macros are used throughout Engine, so defining them
+ * first is important.
  */
 #ifndef CONFIG_H_INCLUDED
 #define CONFIG_H_INCLUDED
@@ -12,9 +12,6 @@
 #cmakedefine RESOURCE_DIR "@RESOURCE_DIR@"
 #cmakedefine DISABLE_ATTRIBUTES
 #cmakedefine MSVC
-#ifndef WIN32
-    #cmakedefine WIN32
-#endif
 #cmakedefine USE_ASAN
 
 #cmakedefine GLEW_STATIC
@@ -25,7 +22,7 @@
 #endif
 
 /* Dynamic library attributes */
-#ifdef WIN32
+#ifdef _WIN32
     #ifdef BUILDING_ENGINE_DLL
         #define ATTR_EXTERNAL __declspec(dllexport)
     #elif defined(INCLUDING_ENGINE_DLL)
@@ -47,14 +44,14 @@
     #define ATTR_MALLOC
     #define ATTR_RETURNS_NONNULL
     #define ATTR_NONNULL(...)
-#elif defined(MSVC)
+#elif defined(MSVC) /* MSVC has some attributes we can use */
     #define ATTR_UNUSED __pragma(warning(suppress:4100 4101))
     #define ATTR_PURE   __declspec(noalias)
     #define ATTR_CONST  __declspec(noalias)
     #define ATTR_MALLOC __declspec(restrict)
     #define ATTR_RETURNS_NONNULL
     #define ATTR_NONNULL(...)
-#else
+#else /* GCC-based compilers use this syntax (MinGW too) */
     #define ATTR_UNUSED __attribute__((__unused__))
     #define ATTR_PURE   __attribute__((__pure__))
     #define ATTR_CONST  __attribute__((__const__))
