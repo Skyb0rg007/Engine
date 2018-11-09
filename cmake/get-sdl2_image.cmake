@@ -1,7 +1,7 @@
 
 include(ExternalProject)
 
-set(SDL2_IMAGE_VERSION "2.0.3")
+set(SDL2_IMAGE_VERSION "2.0.4")
 
 if(NOT WIN32)
     message("This is for Windows only")

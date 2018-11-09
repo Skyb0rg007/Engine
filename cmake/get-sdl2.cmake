@@ -5,7 +5,7 @@ if(NOT WIN32)
     message("This is for Windows only")
 endif(NOT WIN32)
 
-set(SDL2_VERSION "2.0.8")
+set(SDL2_VERSION "2.0.9")
 
 if(MINGW) # download pre-compiled SDL2 dev package for MinGW 32/64-bit
 
