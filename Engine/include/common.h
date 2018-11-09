@@ -48,7 +48,7 @@
 #ifdef static_assert
     #define STATIC_ASSERT(cond, msg) static_assert(cond, msg)
 #else
-    #define STATIC_ASSERT(cond, msg) ((void)sizeof (struct{ int:-!!(cond);}))
+    #define STATIC_ASSERT(cond, msg) ((void)sizeof (char[1 - 2*!(cond)]))
 #endif
 
 /************************************************

@@ -4,16 +4,25 @@ configure_file(
     @ONLY
 )
 
-add_library(engine
+if (ENGINE_BUILD_DYNAMIC)
+    set(ENGINE_LIB_TYPE SHARED)
+else()
+    set(ENGINE_LIB_TYPE STATIC)
+endif(ENGINE_BUILD_DYNAMIC)
+
+add_library(engine ${ENGINE_LIB_TYPE}
     src/main.c
     src/glutils.c
     src/utils.c
+    src/ECS/ECS.c
 )
 target_link_libraries(engine
+    INTERFACE
+        SDL2::SDL2main
     PUBLIC
         OpenGL::GL
         GLEW::GLEW
-        SDL2::SDL2main
+        SDL2::SDL2
         SDL2::SDL2_image
     PRIVATE
         cglm
@@ -26,9 +35,8 @@ target_include_directories(engine
 )
 target_compile_features(engine
     PUBLIC
-        c_std_99
-    PRIVATE
-        $<$<COMPILE_FEATURES:c_static_assert>:c_static_assert>
+        $<$<COMPILE_FEATURES:c_std_11>:c_std_11>
+        $<$<NOT:$<COMPILE_FEATURES:c_std_11>>:c_std_99>
 )
 target_compile_options(engine
     PRIVATE
@@ -47,10 +55,14 @@ target_compile_options(engine
             -Wjump-misses-init
         >
 )
-# target_compile_definitions(engine
-    # PRIVATE
-        # BUILDING_ENGINE_LIB
-# )
+if (ENGINE_BUILD_DYNAMIC)
+    target_compile_definitions(engine
+        PRIVATE
+            BUILDING_ENGINE_DLL
+        INTERFACE
+            INCLUDING_ENGINE_DLL
+    )
+endif(ENGINE_BUILD_DYNAMIC)
 
 # Testing
 add_subdirectory(tests)

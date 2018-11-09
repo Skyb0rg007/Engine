@@ -9,12 +9,39 @@
 #include <GL/glew.h>
 #include <stdlib.h>
 
+
+/* Generating buffers (Array buffers + Element array buffers) */
+GLuint gen_buffer(GLenum type, GLsizei size, const void *data) ATTR_NONNULL(3);
+void   attrib_buffer(GLuint index, GLint size, GLenum type, 
+        GLsizei stride, intptr_t offset);
+void   del_buffer(GLuint buffer);
+
+/* Generating vertex array objects */
+GLuint gen_array(void);
+void   bind_array(GLuint vao);
+void   del_array(GLuint vao);
+
+/* Generating shaders */
+GLuint make_shader(GLenum type, const char *src)  ATTR_NONNULL(2);
+GLuint load_shader(GLenum type, const char *path) ATTR_NONNULL(2); 
+
+/* Generating shader programs */
+GLuint make_program(GLuint shader1, GLuint shader2);
+GLuint load_program(const char *vpath, const char *fpath) ATTR_NONNULL(1,2);
+void   use_program(GLuint prog); 
+void   del_program(GLuint prog);
+
+/* Generating textures */
+GLuint load_texture(const char *path);
+void   bind_texture(GLuint tex);
+void   del_texture(GLuint tex);
+
 /**
  * @brief Call an OpenGL function, checking for errors 
  * @param call The function call to make
  */
 #if IS_DEBUG_BUILD
-# define GLCHECK(call) do {                                                   \
+# define GLCHECK(call) do {                                                  \
     call;                                                                    \
     GLenum gl_err;                                                           \
     int gl_had_error = 0;                                                    \

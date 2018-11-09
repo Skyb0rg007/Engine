@@ -17,6 +17,7 @@ option(INSTALL_WIN_DEPS "Install SDL2, SDL2_image, and GLEW for Windows" OFF)
 option(DISABLE_ATTRIBUTES "Disables optimising attributes" OFF)
 option(USE_ASAN "Compiles with AddressSanitizer for Debug builds - Linux only" OFF)
 option(ENABLE_TESTS "Enable the tests for this project" OFF)
+option(ENGINE_BUILD_DYNAMIC "Create a .dll or .so" ON)
 
 include(cmake/handle-windows.cmake)
 if (INSTALL_WIN_DEPS)
