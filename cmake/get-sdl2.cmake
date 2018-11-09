@@ -14,7 +14,7 @@ if(MINGW) # download pre-compiled SDL2 dev package for MinGW 32/64-bit
         PREFIX ${DEPENDENCY_EXTRACT_DIR}
         DOWNLOAD_DIR ${DEPENDENCY_DOWNLOAD_DIR}
         URL http://libsdl.org/release/SDL2-devel-${SDL2_VERSION}-mingw.tar.gz
-        URL_MD5 5889aea27f2df3fee599bbb3775e8b31
+        URL_MD5 f5645eed64214c3bc22a3e157fc1f15f
         CONFIGURE_COMMAND ""
         BUILD_COMMAND ""
         INSTALL_COMMAND 
@@ -39,7 +39,7 @@ elseif(MSVC) # download pre-compiled SDL2 dev package for Visual C++ 32/64-bit
         PREFIX ${DEPENDENCY_EXTRACT_DIR}
         DOWNLOAD_DIR ${DEPENDENCY_DOWNLOAD_DIR}
         URL http://libsdl.org/release/SDL2-devel-${SDL2_VERSION}-VC.zip
-        URL_MD5 c848c457ad7ec0db3b96a77c2e5bc83d
+        URL_MD5 22bdb85ce4874673c4fafcce772d8b72
         CONFIGURE_COMMAND ""
         BUILD_COMMAND ""
         INSTALL_COMMAND 
